@@ -1,0 +1,15 @@
+<h2>My TODOs ({{ uncheckedTodos | async }})</h2>
+<app-toolbar></app-toolbar>
+<hr />
+<ul *ngIf="(filtertToDos | async) as filtertToDos" >
+  <li
+    class="todo-item"
+    [class.done]="todo.done"
+    *ngFor="let todo of filtertToDos"
+  >
+    <input type="checkbox" [checked]="todo.done" (change)="toggleTodo(todo)" />
+    <i class="fas fa-trash" (click)="deleteTodo(todo)"></i>
+    {{ todo.description }}
+  </li>
+</ul>
+<p *ngIf="(todos | async).length === 0">You have nothing TODO? Don't be lazy!</p>
